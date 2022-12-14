@@ -14,15 +14,17 @@
   </div>
 
   <div v-for="(a, i) in products" :key="i">
-    <img :src="require(`./assets/room${i}.jpg`)" :style="room-img"/>
+    <img :src="products[i].image" :style="room-img"/>
     <!-- html 속성도 데이터바인딩 가능 -> :속성="데이터테이블" -->
-    <h4 :style="styleH" @click="modal = true">{{ products[i] }}</h4>
-    <p>{{ price[i] }} 만원</p>
-    <button @click="increase(i)">허위매물 신고</button> <span>신고수 : {{ count[i] }}</span>
+    <h4 :style="styleH" @click="modal = true">{{ products[i].title }}</h4>
+    <p>{{ products[i].price }} 만원</p>
+    <!-- <button @click="increase(i)">허위매물 신고</button> <span>신고수 : {{ count[i] }}</span> -->
   </div>
 </template>
 
 <script>
+
+import data from './data.js';
 
 export default {
   name: 'App',
@@ -30,7 +32,8 @@ export default {
     return {
       price : [60, 70, 100],
       styleH : 'color : blue',
-      products : ['역삼동 오피스텔', '천호동 오피스텔', '마포구 오피스텔'],
+      // products : ['역삼동 오피스텔', '천호동 오피스텔', '마포구 오피스텔'],
+      products : data,
       count : [0, 0, 0],
       modal : false,
     }
