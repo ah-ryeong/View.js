@@ -1,9 +1,19 @@
 <template>
   <div class="black-bg" v-if="modal">
     <div class="white-bg">
-      <h4>Detail Page</h4>
-      <p>detail</p>
+      <h4>{{ products[clickNum].title }}</h4>
+      <p>{{ products[clickNum].price }}</p>
       <button @click="modal = false">close</button>
+
+      <div v-if="clickNum === 1">
+        clickNum1
+      </div>
+      <div v-else-if="clickNum === 2">
+        clickNum2
+      </div>
+      <div v-else>
+        clickNum
+      </div>
     </div>
   </div>
 
@@ -16,7 +26,7 @@
   <div v-for="(a, i) in products" :key="i">
     <img :src="products[i].image" :style="room-img"/>
     <!-- html 속성도 데이터바인딩 가능 -> :속성="데이터테이블" -->
-    <h4 :style="styleH" @click="modal = true">{{ products[i].title }}</h4>
+    <h4 :style="styleH" @click="modal = true; clickNum = i">{{ products[i].title }}</h4>
     <p>{{ products[i].price }} 만원</p>
     <!-- <button @click="increase(i)">허위매물 신고</button> <span>신고수 : {{ count[i] }}</span> -->
   </div>
@@ -36,6 +46,7 @@ export default {
       products : data,
       count : [0, 0, 0],
       modal : false,
+      clickNum : 0,
     }
   },
 
