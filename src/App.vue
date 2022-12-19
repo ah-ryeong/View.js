@@ -1,27 +1,14 @@
 <template>
-  <div class="black-bg" v-if="modal">
-    <div class="white-bg">
-      <h4>{{ products[clickNum].title }}</h4>
-      <p>{{ products[clickNum].price }}</p>
-      <button @click="modal = false">close</button>
 
-      <div v-if="clickNum === 1">
-        clickNum1
-      </div>
-      <div v-else-if="clickNum === 2">
-        clickNum2
-      </div>
-      <div v-else>
-        clickNum
-      </div>
-    </div>
-  </div>
+  <Modal :products="products" :modal="modal" :clickNum="clickNum" />
 
   <div class="menu">
     <a>Home</a>
     <a>Shop</a>
     <a>About</a>
   </div>
+
+  <Discount />
 
   <div v-for="(a, i) in products" :key="i">
     <img :src="products[i].image" :style="room-img"/>
@@ -35,6 +22,8 @@
 <script>
 
 import data from './data.js';
+import Discount from './Discount.vue';
+import Modal from './Modal.vue';
 
 export default {
   name: 'App',
@@ -57,6 +46,8 @@ export default {
   },
 
   components: {
+    Discount,
+    Modal,
   }
 }
 </script>
