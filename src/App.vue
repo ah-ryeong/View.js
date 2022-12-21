@@ -8,15 +8,9 @@
     <a>About</a>
   </div>
 
-  <Discount />
+  <Discount v-bind="obj" :name="obj.name" />
 
-  <div v-for="(a, i) in products" :key="i">
-    <img :src="products[i].image" :style="room-img"/>
-    <!-- html 속성도 데이터바인딩 가능 -> :속성="데이터테이블" -->
-    <h4 :style="styleH" @click="modal = true; clickNum = i">{{ products[i].title }}</h4>
-    <p>{{ products[i].price }} 만원</p>
-    <!-- <button @click="increase(i)">허위매물 신고</button> <span>신고수 : {{ count[i] }}</span> -->
-  </div>
+  <Card :products="products[i]" v-for="(product, i) in products" :key="product"/>
 </template>
 
 <script>
@@ -24,6 +18,7 @@
 import data from './data.js';
 import Discount from './Discount.vue';
 import Modal from './Modal.vue';
+import Card from './Card.vue';
 
 export default {
   name: 'App',
@@ -36,6 +31,7 @@ export default {
       count : [0, 0, 0],
       modal : false,
       clickNum : 0,
+      obj : { name : 'kim', age: 20 },
     }
   },
 
@@ -48,6 +44,7 @@ export default {
   components: {
     Discount,
     Modal,
+    Card,
   }
 }
 </script>
