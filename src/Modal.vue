@@ -4,7 +4,7 @@
         <h4>{{ products[clickNum].title }}</h4>
         <h4>{{ products[clickNum].content }}</h4>
         <p>{{ products[clickNum].price }}</p>
-        <!-- <button @click="modal = false">close</button> -->
+        <button @click="$emit('closeModal')">close</button>
 
         <div v-if="clickNum === 1">
             clickNum1

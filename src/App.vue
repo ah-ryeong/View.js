@@ -1,6 +1,6 @@
 <template>
 
-  <Modal :products="products" :modal="modal" :clickNum="clickNum" />
+  <Modal @closeModal="modal = false" :products="products" :modal="modal" :clickNum="clickNum" />
 
   <div class="menu">
     <a>Home</a>
@@ -10,7 +10,7 @@
 
   <Discount v-bind="obj" :name="obj.name" />
 
-  <Card :products="products[i]" v-for="(product, i) in products" :key="product"/>
+  <Card @openModal="modal = true; clickNum = $event" :products="products[i]" v-for="(product, i) in products" :key="product"/>
 </template>
 
 <script>
