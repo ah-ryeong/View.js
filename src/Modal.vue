@@ -30,6 +30,19 @@
                 month : 1,
             }
         },
+
+        watch : {
+            month(value) {
+                if(value >= 13) {
+                    alert('13 이상 입력할 수  없습니다.');
+                    this.month = 1;
+                } else if(isNaN(value) === true) {
+                    alert('문자는 입력할 수 없습니다.');
+                    this.month = 1;
+                }
+            }
+        },
+
         props : {
             products : Array,
             modal : Boolean,
