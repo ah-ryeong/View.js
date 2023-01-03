@@ -1,6 +1,9 @@
 <template>
 
-  <Modal @closeModal="modal = false" :products="products" :modal="modal" :clickNum="clickNum" />
+  <!-- <div class="start" :class="{ end : modal }"> -->
+  <Transition name="fade">
+    <Modal @closeModal="modal = false" :products="products" :modal="modal" :clickNum="clickNum" />
+  </Transition>
 
   <div class="menu">
     <a>Home</a>
@@ -95,4 +98,29 @@ div {
   border-radius: 8px;
   padding: 20px;
 }
+
+.start {
+  opacity: 0;
+  transition: all 1s;
+}
+
+.end {
+  opacity: 1;
+}
+
+/* 시작 */
+.fade-enter-from {
+  opacity: 0;
+} 
+
+.fade-enter-active {
+  transition: all 1s;
+}
+
+/* 끝 */
+.fade-enter-to {
+  opacity: 1;
+}
+
+/* 퇴장은 .fade-leave-from / active / to */
 </style>
