@@ -13,6 +13,10 @@
 
   <Discount v-bind="obj" :name="obj.name" />
 
+  <button class="priceBtn" @click="priceSort">가격순 정렬</button>
+  <button class="priceBtn" @click="priceSort2">가격높은순정렬</button>
+  <button class="priceBtn" @click="abc">가나다순정렬</button>
+
   <Card @openModal="modal = true; clickNum = $event" :products="products[i]" v-for="(product, i) in products" :key="product"/>
 </template>
 
@@ -42,6 +46,28 @@ export default {
     increase(props) {
       this.count[props] ++;
     },
+
+    priceSort() {
+      this.products.sort(function(a, b) {
+        return a.price - b.price;
+      });
+    },
+
+    priceSort2() {
+      this.products.sort((a, b) => {
+        return b.price - a.price;
+      });
+    },
+
+    abc() {
+      this.products.sort((a, b) => {
+        if(a.title > b.title) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
+    }
   },
 
   components: {
@@ -123,4 +149,9 @@ div {
 }
 
 /* 퇴장은 .fade-leave-from / active / to */
+
+.priceBtn {
+  margin-bottom: 20px;
+  margin-right: 5px;
+}
 </style>
