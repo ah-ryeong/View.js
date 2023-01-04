@@ -11,7 +11,7 @@
     <a>About</a>
   </div>
 
-  <Discount v-bind="obj" :name="obj.name" />
+  <Discount v-if="showDiscount === true" v-bind="obj" :name="obj.name" />
 
   <button class="priceBtn" @click="priceSort">가격순 정렬</button>
   <button class="priceBtn" @click="priceSort2">가격높은순정렬</button>
@@ -39,6 +39,7 @@ export default {
       modal : false,
       clickNum : 0,
       obj : { name : 'kim', age: 20 },
+      showDiscount : true,
     }
   },
 
@@ -68,6 +69,12 @@ export default {
         }
       });
     }
+  },
+
+  mounted(){
+    setTimeout(() => {
+      this.showDiscount = false;
+    }, 2000);
   },
 
   components: {
@@ -153,5 +160,6 @@ div {
 .priceBtn {
   margin-bottom: 20px;
   margin-right: 5px;
+  margin-top: 20px;
 }
 </style>
